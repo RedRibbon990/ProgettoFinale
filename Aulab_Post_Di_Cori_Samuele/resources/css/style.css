@@ -2,7 +2,11 @@ body{
     background-color: aqua;
 }
 
-.Home{
+#navbarDropdown {
     color: white;
+    text-decoration: none;
+}
 
+.navbar {
+    background: linear-gradient(to bottom right, #ffffff, #000000);
 }
