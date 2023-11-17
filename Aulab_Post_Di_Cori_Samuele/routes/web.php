@@ -25,8 +25,8 @@ Route::get('article/show/{article}', [ArticleController::class, 'show'])->name('
 Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
 Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
 
-
+// By Category
 Route::get('article/category/{category}', [ArticleController::class, 'byCategory'])->name('article.byCategory');
-
-Route::get('article/user/{user}', [ArticleController::class, 'byAuthor'])->name('article.byAuthor');
+// By Author
+Route::get('article/user/{user}', [ArticleController::class, 'byAuthor'])->name('article.byAuthorwe');
 
