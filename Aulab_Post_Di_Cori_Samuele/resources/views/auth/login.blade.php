@@ -11,34 +11,35 @@
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($error->all() as $error)
-                                    <li>{{$error}}</li>                                
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
                         </div>
-                        
                     @endif
 
-                    <form class="card p-t shadow" action="{{route('login')}}" method="POST">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <div class="mt-2">
+                    
+                        <div class="mt-3">
                             <label for="exampleInputEmail" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
-                            <div class="form-text" id="emailHelp">We'll never share your Email whit anyone else.</div>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" value="{{ old('email') }}" autocomplete="email">
+                            <div class="form-text" id="emailHelp">We'll never share your email with anyone else.</div>
                         </div>
-                        <div class="mt-2">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <div class="mt-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" autocomplete="current-password">
                         </div>
-                        <div class="mt-2 form-check">
-                            <input type="checkbox" name="remember" class="form-check-input" id="esampleCheck1">
+                        <div class="mt-3 form-check">
+                            <input type="checkbox" name="remember" class="form-check-input" id="exampleCheck1" {{ old('remember') ? 'checked' : '' }} autocomplete="on">
                             <label class="form-check-label" for="exampleCheck1">Ricordati di me</label>
                         </div>
                         <div class="mt-2">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                            <p class="small mt-2">Non sei registrato? <a href="{{route('register')}}">Clicca quì</a></p>
+                            <button type="submit" class="btn btn-info text-white">Login</button>
+                            <p class="small mt-2">Non sei registrato? <a href="{{ route('register') }}">Clicca qui</a></p>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
