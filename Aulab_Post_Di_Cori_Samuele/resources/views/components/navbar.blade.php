@@ -5,6 +5,9 @@
     <li class="nav-item">
         <a href="{{route('article.create')}}">Inserisci un articolo</a>
     </li>
+    <li class="nav-item">
+        <a href="{{route('article.index')}}">Annunci</a>
+    </li>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

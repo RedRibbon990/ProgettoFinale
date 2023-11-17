@@ -1,8 +1,7 @@
 <x-layout>
-
-    <div class="container-fluid p-2 bg-info text-center text-white">
+    <div class="container-fluid p-5 bg-info text-center text-white">
         <div class="row justify-content-center">
-            <h1 class="display-1">The Aulab Post</h1>
+            <h1 class="display-1">Tutti gli articoli</h1>
         </div>
     </div>
 
@@ -20,11 +19,12 @@
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between align-items-center">
                             Redatto il {{$article->created_at->format('d/m/Y')}} da <br> {{$article->user->name}}
+                            <a href="" class="btn btn-info text-white">Leggi</a>
                         </div>
                     </div>
-                </div>                
+                </div>
+                
             @endforeach
         </div>
     </div>
-
 </x-layout>
