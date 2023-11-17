@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,6 +70,17 @@ class ArticleController extends Controller
         $articles = $category->articles->sortByDesc('created_at');
         return view('article.byCategory', compact('category', 'articles'));
     }
+
+    public function byAuthor(User $user)
+    {
+        // Ottieni tutti gli annunci dell'utente
+        $articles = $user->articles;
+    
+        return view('article.byAuthor', compact('user', 'articles'));
+    }
+    
+    
+    
     /**
      * Show the form for editing the specified resource.
      */

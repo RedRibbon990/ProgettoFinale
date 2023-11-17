@@ -27,3 +27,6 @@ Route::post('/article/store', [ArticleController::class, 'store'])->name('articl
 
 
 Route::get('article/category/{category}', [ArticleController::class, 'byCategory'])->name('article.byCategory');
+
+Route::get('article/user/{user}', [ArticleController::class, 'byAuthor'])->name('article.byAuthor');
+
