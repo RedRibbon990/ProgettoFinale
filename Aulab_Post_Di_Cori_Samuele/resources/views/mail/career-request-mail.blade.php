@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    @Vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <title>The Aulab Post</title>
+    <title>Document</title>
 </head>
 <body>
-
-    <x-navbar />
-
-    <div class="min-vh-100">
-        {{$slot}}
-    </div>
     
-    <x-footer />
-    
+    <h1>Abbiamo ricevuto una riciesta</h1>
+    <h4>Per il seguente ruolo di {{$info['role']}}</h4>
+    <p>Ricevuta da {{$info['email']}}</p>
+
+    <h4>Messaggio:</h4>
+    <p>{{$info['message']}}</p>
+
 </body>
 </html>

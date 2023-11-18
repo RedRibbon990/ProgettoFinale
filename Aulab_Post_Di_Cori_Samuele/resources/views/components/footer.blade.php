@@ -5,7 +5,7 @@
                 <p>Presto.it</p>
                 <p>Vuoi lavorare con noi?</p>
                 <p>Registrati e clicca qui!⬇</p>
-                <a href="{{route('became.revisor')}}" class="btn btn-warning text-black shadow">Diventa Revisore</a>
+                <a href="{{route('careers')}}" class="btn btn-warning text-black shadow">Diventa Revisore</a>
             </div>
         </div>
     </div>
