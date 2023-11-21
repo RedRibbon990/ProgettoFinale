@@ -14,12 +14,16 @@ class CareerRequestMail extends Mailable
     use Queueable, SerializesModels;
 
     public $info;
+    public $user;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($info)
+
+    public function __construct($info, $user)
     {
         $this->info = $info;
+        $this->user = $user;
     }
 
     /**

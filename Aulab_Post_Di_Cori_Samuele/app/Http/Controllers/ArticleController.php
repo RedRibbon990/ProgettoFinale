@@ -20,7 +20,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->get();
+        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->take(4)->get();
         return view('article.index', compact('articles'));
     }
 
@@ -67,15 +67,17 @@ class ArticleController extends Controller
 
     public function byCategory(Category $category)
     {
-        $articles = $category->articles->sortByDesc('created_at');
+        $articles = $category->articles->sortByDesc('created_at')->filter(function ($article) {
+            return $article->is_accepted == true;
+        });
         return view('article.byCategory', compact('category', 'articles'));
     }
 
     public function byAuthor(User $user)
     {
-        // Ottieni tutti gli annunci dell'utente
-        $articles = $user->articles;
-    
+        $articles = $user->articles->sortByDesc('created_at')->filter(function ($article) {
+            return $article->is_accepted == true;
+        });
         return view('article.byAuthor', compact('user', 'articles'));
     }
     

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RevisorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,26 @@ Route::get('article/category/{category}', [ArticleController::class, 'byCategory
 Route::get('article/user/{user}', [ArticleController::class, 'byAuthor'])->name('article.byAuthor');
 
 
-Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
+Route::get('/careers', [PublicController::class, 'careers'])->name('careers')->middleware('auth');
 
 Route::get('/careers/submit', [PublicController::class, 'careersSubmit'])->name('careers.submit');
+
+// Admin Home
+Route::middleware('admin')->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
+
+Route::middleware('admin')->group(function() {
+    Route::get('/admin/{user}/set-revisor', [AdminController::class, 'setRevisor'])->name('admin.setRevisor');
+    Route::get('/admin/{user}/set-admin', [AdminController::class, 'setAdmin'])->name('admin.setAdmin');
+    Route::get('/admin/{user}/set-writer', [AdminController::class, 'setWriter'])->name('admin.setWriter');
+
+});
+
+Route::middleware('revisor')->group(function (){
+    Route::get('/revisor/dashboard', [RevisorController::class, 'dashboard'])->name('revisor.dashboard');
+    Route::get('/revisor/{article}/accept', [RevisorController::class, 'acceptArticle'])->name('revisor.accept');
+    Route::get('/revisor/{article}/reject', [RevisorController::class, 'rejectArticle'])->name('revisor.reject');
+    Route::get('/revisor/{article}/undo', [RevisorController::class, 'rundoArticle'])->name('revisor.undo');
+
+});

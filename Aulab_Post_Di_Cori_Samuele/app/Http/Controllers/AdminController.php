@@ -9,11 +9,14 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $adminRequests = User::where('is_admin', NULL)->get();
-        $revisorRequests = User::where('is_revisor', NULL)->get();
-        $writerRequests = User::where('is_writer', NULL)->get();
+        $allRequests =
+        [
+            $adminRequests = User::where('is_admin', NULL)->get(),
+            $adminRequests = User::where('is_admin', NULL)->get(),
+            $adminRequests = User::where('is_admin', NULL)->get(),
+        ];
 
-        return view('admin.dashboard', compact('adminRequest', 'revisorRequests', 'writerRequests'));
+        return view('admin.dashboard', compact('allRequests'));
     }
 
     public function setAdmin(User $user)
@@ -41,4 +44,6 @@ class AdminController extends Controller
 
         return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente reso redattore l\'utente scelto');
     }
+
+
 }

@@ -14,7 +14,23 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                    <button class="btn btn-info text-white">Attiva {{$role}}</button>
+                    @switch($role)
+                        @case('amministratore')
+                            <a href="{{ route('admin.setAdmin', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
+                            @break
+
+                        @case('revisore')
+                            <a href="{{ route('revisor.setActive', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
+                            @break
+
+                        @case('redattore')
+                            <a href="{{ route('writer.setWriter', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
+                            @break
+
+                        @default
+                            <!-- Gestione per ruolo sconosciuto -->
+                            <span>Ruolo sconosciuto</span>
+                    @endswitch
                 </td>
             </tr>
         @endforeach

@@ -2,9 +2,11 @@ body{
     background-color: aqua;
 }
 
-#navbarDropdown {
-    color: white;
-    text-decoration: none;
+#navbarSupportedContent {
+    color: red;
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .navbar {
