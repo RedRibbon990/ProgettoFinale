@@ -18,6 +18,7 @@ class Kernel extends HttpKernel
         // ...
         'revisor' => \App\Http\Middleware\UserIsRevisor::class,
         'admin' => \App\Http\Middleware\UserIsAdmin::class,
+        'writer' => \App\Http\Middleware\UserIsWriter::class,
     ];
 
     protected $middleware = [

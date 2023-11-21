@@ -54,5 +54,9 @@ Route::middleware('revisor')->group(function (){
     Route::get('/revisor/{article}/accept', [RevisorController::class, 'acceptArticle'])->name('revisor.accept');
     Route::get('/revisor/{article}/reject', [RevisorController::class, 'rejectArticle'])->name('revisor.reject');
     Route::get('/revisor/{article}/undo', [RevisorController::class, 'rundoArticle'])->name('revisor.undo');
+});
 
+Route::middleware('writer')->group(function (){
+    Route::get('/writer/create', [ArticleController::class, 'dashboard'])->name('article.create');
+    Route::get('/writer/store', [ArticleController::class, 'acceptArticle'])->name('article.store');
 });
