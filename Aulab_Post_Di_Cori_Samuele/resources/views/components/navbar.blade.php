@@ -13,19 +13,21 @@
             </li>
         </ul>
 
-        <form action="{{route('article.search')}}">
-            <input type="search" name="query" placeholder="Cosa stai cercando?" aria-label="Search">
-            <button type="submit" class="btn btn-outline-info">Cerca</button>
-        </form>
         @auth
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Benvenuto {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if(Auth::user()->is_admin)
-                            <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard admin</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Dashboard</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard admin</a></li>
+                                    <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard admin</a></li>
+                                </ul>
+                            </li>
                         @elseif (Auth::user()->is_revisor)
                             <li><a class="dropdown-item" href="{{route('revisor.dashboard')}}">Dashboard revisore</a></li>
                         @elseif (Auth::user()->is_writer)
@@ -41,7 +43,7 @@
                 </li>
             </ul>
         @endauth
-
+    
         @guest
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -58,5 +60,10 @@
                 </li>
             </ul>
         @endguest
+
+        <form action="{{route('article.search')}}" class="m-2">
+            <input type="search" name="query" placeholder="Cosa stai cercando?" aria-label="Search">
+            <button type="submit" class="btn btn-outline-info">Cerca</button>
+        </form>
     </div>
 </nav>

@@ -42,7 +42,7 @@ class ArticleController extends Controller
             'subtitle' => 'required|unique:articles|min:5',
             'body' => 'required|min:10',
             'image' => 'image|required',
-            'category' => 'required|min:1',
+            'category' => 'required|exists:categories,id',
         ]);
 
         Article::create([
@@ -50,7 +50,7 @@ class ArticleController extends Controller
             'subtitle' => $request->subtitle,
             'body' => $request->body,
             'image' => $request->file('image')->store('public/images'),
-            'category_id' => $request->category_id,
+            'category_id' => $request->category,
             'user_id' => Auth::user()->id,
         ]);
 
@@ -78,6 +78,7 @@ class ArticleController extends Controller
         $articles = $user->articles->sortByDesc('created_at')->filter(function ($article) {
             return $article->is_accepted == true;
         });
+        dd($articles);
         return view('article.byAuthor', compact('user', 'articles'));
     }
     

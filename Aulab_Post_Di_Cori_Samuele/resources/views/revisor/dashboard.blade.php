@@ -7,7 +7,7 @@
 
     @if (session('message'))
         <div class="alert alert-success text-center">
-            {{session('messsage')}}
+            {{ session('message') }}
         </div>
     @endif
 
@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Articoli da revisionare</h2>
-                <x-article-table :articles="$unrevisionedArticles" />
+                <x-articles-table :articles="$unrevisionedArticles" />
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Articoli pubblicati</h2>
-                <x-article-table :articles="$acceptedArticles" />
+                <x-articles-table :articles="$acceptedArticles" />
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Articoli respinti</h2>
-                <x-article-table :articles="$rejectedArticles" />
+                <x-articles-table :articles="$rejectedArticles" />
             </div>
         </div>
     </div>
