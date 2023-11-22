@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between align-items-center">
                             @if ($article->user)
-                                <a href="{{ route('article.byUser', ['user' => $article->user->id]) }}">Redatto il {{ $article->created_at->format('d/m/Y') }} da {{ $article->user->name }}</a>
+                                <a href="{{ route('article.byAuthor', ['user' => $article->user->id]) }}">Redatto il {{ $article->created_at->format('d/m/Y') }} da {{ $article->user->name }}</a>
                             @endif
                             @if ($article->user && $article->category)
                                 <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi</a>
