@@ -39,7 +39,7 @@ class PublicController extends Controller
         $info = compact('role', 'email', 'message');
         $mail = new CareerRequestMail($info, $user);
 
-        Mail::to('admin@theaulabpost.it')->send($mail);
+        Mail::to('TAP@request.it')->send($mail);
 
         $validRoles = ['admin', 'revisor', 'writer'];
 

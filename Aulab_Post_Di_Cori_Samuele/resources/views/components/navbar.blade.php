@@ -13,6 +13,10 @@
             </li>
         </ul>
 
+        <form action="{{route('article.search')}}">
+            <input type="search" name="query" placeholder="Cosa stai cercando?" aria-label="Search">
+            <button type="submit" class="btn btn-outline-info">Cerca</button>
+        </form>
         @auth
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">

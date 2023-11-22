@@ -18,19 +18,27 @@
                         @case('amministratore')
                             <a href="{{ route('admin.setAdmin', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
                             @break
-
                         @case('revisore')
-                            <a href="{{ route('revisor.setActive', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
+                            <form action="{{ route('admin.setRevisor', compact('user')) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-info text-white">Attiva Revisore</button>
+                            </form>
                             @break
-
                         @case('redattore')
-                            <a href="{{ route('writer.setWriter', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
+                            <a href="{{ route('admin.setWriter', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
                             @break
-
                         @default
                             <!-- Gestione per ruolo sconosciuto -->
                             <span>Ruolo sconosciuto</span>
                     @endswitch
+                    <!-- Aggiungi il pulsante "Elimina" -->
+                    @if ($role !== null)
+                        <form action="{{ route('admin.rejectRequest', ['user' => $user, 'role' => $role]) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('PATCH') <!-- Usa PATCH anziché DELETE -->
+                            <button type="submit" class="btn btn-warning" onclick="return confirm('Sei sicuro di voler rifiutare questa richiesta?')">Rifiuta</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

@@ -20,7 +20,7 @@ return new class extends Migration
 
     $user = User::create([
         'name' => 'Admin',
-        'email' => 'admin@theaulabpost.com',
+        'email' => 'admin@gmail.com',
         'password' => bcrypt('12345678'),
         'is_admin' => true,
     ]);
@@ -31,7 +31,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        User::where('email', 'admin@theaulabpost.com')->delete();
+        User::where('email', 'admin@gmail.com')->delete();
 
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['is_admin', 'is_revisor', 'is_writer']);

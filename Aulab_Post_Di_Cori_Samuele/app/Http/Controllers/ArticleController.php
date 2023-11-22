@@ -50,11 +50,11 @@ class ArticleController extends Controller
             'subtitle' => $request->subtitle,
             'body' => $request->body,
             'image' => $request->file('image')->store('public/images'),
-            'category_id' => $request->category,
+            'category_id' => $request->category_id,
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect(route('homepage'))->with('message', 'Articolo creato con successo, sarà pubblicato dopo la revisione.');
+        return redirect(route('homepage'))->with('success', 'Articolo creato con successo, sarà pubblicato dopo la revisione.');
     }
 
     /**
@@ -81,8 +81,14 @@ class ArticleController extends Controller
         return view('article.byAuthor', compact('user', 'articles'));
     }
     
+    public function articleSearch(Request $request)
+    {
+        $query = $request->input('query');
+        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->get();
+        return view('article.search-index', compact('articles', 'query'));
+    }
     
-    
+
     /**
      * Show the form for editing the specified resource.
      */

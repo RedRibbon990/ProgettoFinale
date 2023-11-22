@@ -70,7 +70,7 @@
                 <div class="flex flex-row justify-center my-2 alert alert-success">
                     {{ session('message') }}
                 </div>
-                @endif
+            @endif
 
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </x-layout>
