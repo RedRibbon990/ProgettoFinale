@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RevisorController;
+use App\Http\Controllers\WriterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,16 +33,21 @@ Route::get('article/user/{user}', [ArticleController::class, 'byAuthor'])->name(
 Route::get('/careers', [PublicController::class, 'careers'])->name('careers')->middleware('auth');
 Route::get('/careers/submit', [PublicController::class, 'careersSubmit'])->name('careers.submit');
 
-Route::patch('/admin/reject-request/{user}/{role}', [AdminController::class, 'rejectRequest'])->name('admin.rejectRequest');
-
-// Home's Role
-
 // Admin
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware('admin')->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+// Show User
+    Route::get('/admin/users', [AdminController::class, 'showAllUsers'])->name('admin.showUser');
+// Change User Role
+    Route::post('/admin/change-user-role/{user}/{newRole}', [AdminController::class, 'changeUserRole'])->name('admin.changeUserRole');
+    Route::get('/admin/change-user-role/{user}/{currentRole}/{newRole}', [AdminController::class, 'showChangeUserRoleView'])->name('admin.changeUserRoleView');
+
+// Set role
     Route::post('/admin/{user}/set-revisor', [AdminController::class, 'setRevisor'])->name('admin.setRevisor');
     Route::get('/admin/{user}/set-admin', [AdminController::class, 'setAdmin'])->name('admin.setAdmin');
     Route::get('/admin/{user}/set-writer', [AdminController::class, 'setWriter'])->name('admin.setWriter');
+// Reject role
+    Route::patch('/admin/reject-request/{user}/{role}', [AdminController::class, 'rejectRequest'])->name('admin.rejectRequest');
 
 });
 // Revisor
@@ -53,10 +59,11 @@ Route::middleware('revisor')->group(function (){
 });
 // Writer
 Route::middleware('writer')->group(function (){
-    Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
+    Route::get('/writer/dashboard', [WriterController::class, 'dashboard'])->name('writer.dashboard');
     Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
     
 });
+Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
 
 // Search
 Route::get('article/search', [ArticleController::class, 'articleSearch'])->name('article.search');

@@ -78,7 +78,6 @@ class ArticleController extends Controller
         $articles = $user->articles->sortByDesc('created_at')->filter(function ($article) {
             return $article->is_accepted == true;
         });
-        dd($articles);
         return view('article.byAuthor', compact('user', 'articles'));
     }
     
@@ -89,23 +88,6 @@ class ArticleController extends Controller
         return view('article.search-index', compact('articles', 'query'));
     }
     
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Article $article)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */

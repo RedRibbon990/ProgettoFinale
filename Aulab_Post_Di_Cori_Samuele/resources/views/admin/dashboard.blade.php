@@ -5,9 +5,9 @@
         </h1>
     </div>
 
-    @if (session('message'))
+    @if(session('message'))
         <div class="alert alert-success text-center">
-            {{session('messsage')}}
+            {{ session('message') }}
         </div>
     @endif
 
@@ -16,7 +16,6 @@
             <div class="col-12">
                 <h2>Richiesta per il ruolo Amministratore</h2>
                 <x-request-table :roleRequests="$allRequests['amministratore']" role="amministratore" />
-
             </div>
         </div>
     </div>
@@ -38,4 +37,11 @@
             </div>
         </div>
     </div>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <a href="{{ route('admin.showUser') }}" class="btn btn-primary mt-3">Visualizza Tutti gli Utenti</a>
+        </div>
+    </div>
+
 </x-layout>

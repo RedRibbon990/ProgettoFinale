@@ -19,10 +19,7 @@
                             <a href="{{ route('admin.setAdmin', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
                             @break
                         @case('revisore')
-                            <form action="{{ route('admin.setRevisor', compact('user')) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-info text-white">Attiva Revisore</button>
-                            </form>
+                            <a href="{{ route('admin.setRevisor', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>
                             @break
                         @case('redattore')
                             <a href="{{ route('admin.setWriter', compact('user')) }}" class="btn btn-info text-white">Attiva {{$role}}</a>

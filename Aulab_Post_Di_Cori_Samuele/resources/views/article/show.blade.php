@@ -17,9 +17,11 @@
                 </div>
                 <hr>
                 <p>{{ $article->body }}</p>
-                <div class="text-center">
-                    <a href="{{ route('article.index') }}" class="btn btn-info text-white my-5">Torna indietro</a>
-                </div>
+                @if (Auth::user() && Auth::user()->is_writer)
+                    <div class="text-center">
+                        <a href="{{ route('article.index') }}" class="btn btn-info text-white my-5">Torna indietro</a>
+                    </div>
+                @endif
                 @if (Auth::user() && Auth::user()->is_revisor)
                     <div class="text-center">
                         <a href="{{ route('revisor.accept', compact('article')) }}" class="btn btn-success text-white my-3">Accetta articolo</a>

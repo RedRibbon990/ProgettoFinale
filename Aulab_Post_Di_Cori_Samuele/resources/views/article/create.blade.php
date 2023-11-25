@@ -45,8 +45,9 @@
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Immagine:</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <input type="file" name="image" id="image" class="form-control" multiple>
                     </div>
+
                     <div class="mb-3">
                         <label for="category" class="form-label">Categoria</label>
                         <select name="category" id="category" class="form-control text-capitalize">
