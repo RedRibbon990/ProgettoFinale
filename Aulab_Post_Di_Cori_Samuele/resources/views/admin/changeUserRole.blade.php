@@ -29,19 +29,21 @@
                                 <label for="user_id">ID Utente:</label>
                                 <input type="text" class="form-control" id="user_id" name="user_id" value="{{ $user->id }}" readonly>
                             </div>
-                        
+                            
                             <div class="form-group">
                                 <label for="new_role">Nuovo Ruolo:</label>
                                 <select class="form-control" name="new_role">
-                                    <option value="admin">Amministratore</option>
-                                    <option value="revisor">Revisore</option>
-                                    <option value="writer">Redattore</option>
+                                    <option value="" disabled selected>Scegli un ruolo</option>
+                                    <option value="admin" {{ $newRole == 'admin' ? 'selected' : '' }}>Amministratore</option>
+                                    <option value="revisor" {{ $newRole == 'revisor' ? 'selected' : '' }}>Revisore</option>
+                                    <option value="writer" {{ $newRole == 'writer' ? 'selected' : '' }}>Redattore</option>
                                 </select>
                             </div>
                         
                             <button type="submit" class="btn btn-primary">Cambia Ruolo</button>
                         </form>
-
+                        
+                        
                     </div>
                 </div>
             </div>
