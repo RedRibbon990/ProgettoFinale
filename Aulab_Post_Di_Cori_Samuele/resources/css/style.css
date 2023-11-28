@@ -1,5 +1,11 @@
-body{
-    background-color: aqua;
+body {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #555;
+    text-transform: capitalize;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
 }
 
 #navbarSupportedContent {
@@ -16,10 +22,13 @@ body{
     display: flex;
     width: 100%;
     height: 100vh;
-    background-position: center;
     border-radius: 0;
     padding: 0;
     background-color: black;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
 
 .left-side {
@@ -28,8 +37,9 @@ body{
     align-items: center;
     text-align: center;
     color: white;
-    background: url('/public/image/sfondo.avif') center / cover;
-    backdrop-filter: blur(10px); 
+    background: url('/public/image/register/sfondo.avif') center / cover;
+    background-position: right;
+    backdrop-filter: blur(10px);
 }
 
 .right-side {
@@ -39,45 +49,63 @@ body{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    color: #ffffff;
-    position: relative; 
+    position: relative;
     overflow: hidden;
+    z-index: 9000;
 }
 
-.right-side:hover {
-    background: linear-gradient(55deg, rgba(6, 22, 62, 0.822), rgb(22, 203, 79));
-}
-
-.form-control {
-    background: linear-gradient(55deg, #ff8c00, #4047ce, rgb(22, 203, 79), #ff00ee, #d9ff00);
-    color: #fff; 
-    padding: 10px;
-}
-
-.register {
+.register-form {
+    border: 2px solid white;
     width: 300px;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    background: linear-gradient(to top right, #1abc9c , wheat);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Aggiunto uno stile per il link nella sezione del form */
-.register a {
-    color: #ffffff;
-    text-decoration: underline;
+.register-form h2 {
+    color: #1abc9c;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
+
+.form-control {
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #1abc9c;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #147f67;
+}
+
 
 #welcomeText {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: transparent; 
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -86,45 +114,80 @@ body{
     animation: fadeIn 1.5s ease-in-out forwards;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
 }
 
-.btn {
-    padding: 10px 20px;
-    color: white;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
+.img-aulab {
+    width: 300px;
+    height: 200px;
+    z-index: 8000;
 }
 
-
-.signup {
-    display: flex;
-    width: 75px;
-    height: 75px;
-    background-image: url('/public/image/signup.png');
+.welcome-btn {
+    border-radius: 3em;
+    border-color: #fff;
+    color: #fff;
+    background-image: linear-gradient(to right, rgba(26, 188, 156, 0.6), rgba(26, 188, 156, 0.6) 5%, #1abc9c 5%, #1abc9c 10%, rgba(26, 188, 156, 0.6) 10%, rgba(26, 188, 156, 0.6) 15%, #1abc9c 15%, #1abc9c 20%, rgba(26, 188, 156, 0.6) 20%, rgba(26, 188, 156, 0.6) 25%, #1abc9c 25%, #1abc9c 30%, rgba(26, 188, 156, 0.6) 30%, rgba(26, 188, 156, 0.6) 35%, #1abc9c 35%, #1abc9c 40%, rgba(26, 188, 156, 0.6) 40%, rgba(26, 188, 156, 0.6) 45%, #1abc9c 45%, #1abc9c 50%, rgba(26, 188, 156, 0.6) 50%, rgba(26, 188, 156, 0.6) 55%, #1abc9c 55%, #1abc9c 60%, rgba(26, 188, 156, 0.6) 60%, rgba(26, 188, 156, 0.6) 65%, #1abc9c 65%, #1abc9c 70%, rgba(26, 188, 156, 0.6) 70%, rgba(26, 188, 156, 0.6) 75%, #1abc9c 75%, #1abc9c 80%, rgba(26, 188, 156, 0.6) 80%, rgba(26, 188, 156, 0.6) 85%, #1abc9c 85%, #1abc9c 90%, rgba(26, 188, 156, 0.6) 90%, rgba(26, 188, 156, 0.6) 95%, #1abc9c 95%, #1abc9c 100%);
+    background-position: 0 0;
+    background-size: 100%;
+    transition: background  0.3s ease-in-out;
     cursor: pointer;
-    background-size: cover;
-    text-decoration: none; /* Rimuovi il sottolineato del link */
-    margin-left: 100px; /* Aggiungi questa regola per spostare a destra di 100px */
+
 }
 
-.submit {
-    display: flex;
-    width: 70px;  
-    height: 70px;
-    left: 100px;
-    background-image: url('/public/image/submit.png');
-    background-size: cover;  
-    cursor:pointer;
+.welcome-btn:hover {
+    background-position: 100px;
 }
 
+.btn-l {
+    width: 200px;
+    height: 40px;
+}
+
+.container-login {
+    background-color: red;
+}
+
+/* Login */
+.bg-login {
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+}
+
+/* Centra il form */
+.vh-100 {
+    align-items: center;
+    justify-content: center;
+}
+
+#login {
+    text-align: center;
+    
+}
+
+/* Footer */
+h5 {
+    color: #ffc107;
+}
+.btn-footer {
+    background-color: #ffc107; /* Colore di sfondo del pulsante */
+    color: #000000; /* Colore del testo del pulsante */
+    transition: background-color 0.3s ease; /* Effetto di transizione al passaggio del mouse */
+}
+
+.btn-footer:hover {
+    background-color: #f6f6f6; /* Colore di sfondo del pulsante al passaggio del mouse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Effetto di ombreggiatura al passaggio del mouse */
+    color: black;
+}

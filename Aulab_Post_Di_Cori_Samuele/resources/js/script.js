@@ -17,5 +17,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // Aggiungi qui altre funzioni o chiamate se necessario
 });
 
+// Hide navbar
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica se l'URL contiene 'login' o 'register'
+    if (window.location.href.includes('login') || window.location.href.includes('register')) {
+        // Ottieni l'elemento della navbar
+        var navbar = document.getElementById('nav');
+
+        if (navbar) {
+            navbar.style.display = 'none';
+        }
+    }
+});
+
 
 console.log('hii.');

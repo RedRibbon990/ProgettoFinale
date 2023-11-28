@@ -10,9 +10,8 @@
     <title>The Aulab Post</title>
 </head>
 <body>
-    @if(!request()->is('register'))
-        <x-navbar />
-    @endif
+
+    <x-navbar />
     
     <div class="min-vh-100">
         {{$slot}}
