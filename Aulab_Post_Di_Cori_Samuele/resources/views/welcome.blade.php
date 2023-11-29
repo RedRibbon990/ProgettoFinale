@@ -18,6 +18,11 @@
                             <p class="card-text">{{ $article->body }}</p>
                             @if ($article->category)
                                 <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{ $article->category->name }}</a>
+                                <p class="small fst-italic text-capitalize">
+                                    @foreach($article->tags as $tag)
+                                        #{{$tag->name}}
+                                    @endforeach
+                                </p>
                             @else
                                 <p class="small text-muted fst-italic">Nessuna categoria associata</p>
                             @endif
@@ -26,6 +31,7 @@
                             <p>Redatto il <br> {{ $article->created_at->format('d/m/Y') }}</p>
                             <p>Autore <br> <cite> <a href="{{ route('article.byAuthor', $article->user->id) }}">{{ $article->user->name ?? 'Utente anonimo' }}</a> </cite></p>
                         </div>
+                        
                         <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi</a>
                     </div>
                 </div>

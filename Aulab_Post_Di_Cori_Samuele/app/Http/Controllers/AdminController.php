@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,16 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        // Logica per ottenere le richieste
+        // ottenere le richieste
         $allRequests = [
             'amministratore' => User::where('is_admin', null)->get(),
             'revisore' => User::where('is_revisor', null)->get(),
             'redattore' => User::where('is_writer', null)->get(),
         ];
 
-        return view('admin.dashboard', compact('allRequests'));
+        $tags = Tag::all();
+        $metaInfos = $tags;
+
+        return view('admin.dashboard', compact('allRequests', 'tags', 'metaInfos'));
     }
 
     public function setAdmin(User $user)
@@ -128,5 +132,30 @@ class AdminController extends Controller
         
         $users = User::all();
         return view('admin.showUsers', compact('users', 'currentRole', 'newRole'));
+    }
+// Tag
+    public function editTag(Request $request, Tag $tag)
+    {
+        $request->validate([
+            'name' => 'required|unique:tags',
+        ]);
+
+        $tag->update([
+            'name' => strtolower($request->name)
+        ]);
+
+        return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente aggiornato il Tag');
+    }
+
+    public function deleteTag(Tag $tag)
+    {
+        foreach ($tag->articles as $article)
+        {
+            $article->tags()->detach($tag);
+        }
+
+        $tag->delete();
+
+        return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente eliminato il Tag');
     }
 }    

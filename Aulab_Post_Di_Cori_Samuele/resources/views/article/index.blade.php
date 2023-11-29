@@ -15,8 +15,16 @@
                             <h5 class="card-title"><p class="font-italic text-secondary m-0 ">Titolo</p>  {{ $article->title }}</h5>
                             <p class="card-text"><p class="font-italic text-secondary m-0">Sottotitolo</p>{{ $article->subtitle }}</p>
                             <p class="card-text"><p class="font-italic text-secondary m-0">Descrizione</p>{{ $article->body }}</p>
-                            <p class="font-italic text-secondary m-0">Categoria <a href="{{ route('article.byCategory', ['category' => $article->category]) }}" class="small text-muted fst-italic text-capitalize">{{ $article->category->name }}</a></p>
-                            
+                            <div class="font-italic m-0"> 
+                                <p class="font-italic text-secondary m-0">Categoria</p>
+                                <a href="{{ route('article.byCategory', ['category' => $article->category]) }}" >{{ $article->category->name }}</a>
+                            </div>
+                            <div class="small fst-italic text-capitalize mt-3">
+                                @foreach($article->tags as $tag)
+                                    <p class="font-italic text-secondary m-0">Tag</p>
+                                    #{{$tag->name}}
+                                @endforeach
+                            </div>
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between align-items-center">
                             <p>Redatto il <br> {{ $article->created_at->format('d/m/Y') }}</p>

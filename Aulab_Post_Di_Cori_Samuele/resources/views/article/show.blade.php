@@ -14,6 +14,16 @@
                     <div class="my-3 text-muted fst-italic">
                         <p>Redatto il {{ $article->created_at->format('d/m/Y') }} <br> Autore  <a href="{{ route('article.byAuthor', $article->user->id) }}">{{ $article->user->name ?? 'N/A' }}</a></p>
                     </div>
+                    @if ($article->category)
+                        <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{ $article->category->name }}</a>
+                    @else
+                        <p class="small text-muted fst-italic">Nessuna categoria associata</p>
+                    @endif
+                    <p class="small fst-italic text-capitalize">
+                        @foreach($article->tags as $tag)
+                            #{{$tag->name}}
+                        @endforeach
+                    </p>
                 </div>
                 <hr>
                 <p>{{ $article->body }}</p>

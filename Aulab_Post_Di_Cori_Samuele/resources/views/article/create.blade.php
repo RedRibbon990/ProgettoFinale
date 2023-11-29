@@ -9,16 +9,7 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-    
+                
                 <form class="card p-5 shadow" action="{{route('article.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                         
@@ -30,17 +21,27 @@
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Titolo Annuncio:</label>
-                        <input name="title" type="text" class="form-control" id="title" value="{{old('title')}}">
+                        <input name="title" type="text" class="form-control @error('title') is-invalid @enderror" id="title" value="{{old('title')}}">
+                        @error('title')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="subtitle" class="form-label">Sottotitolo:</label>
-                        <input name="subtitle" type="text" class="form-control" id="subtitle" value="{{old('subtitle')}}">
+                        <input name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" value="{{old('subtitle')}}">
+                        @error('subtitle')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
     
                     <div class="mb-3">
                         <label for="body" class="form-label">Descrizione:</label>
-                        <textarea name="body" id="body" class="form-control">{{old('body')}}</textarea>
+                        <textarea name="body" id="body" class="form-control @error('body') is-invalid @enderror">{{old('body')}}</textarea>
+                    
+                        @error('body')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
@@ -50,14 +51,23 @@
 
                     <div class="mb-3">
                         <label for="category" class="form-label">Categoria</label>
-                        <select name="category" id="category" class="form-control text-capitalize">
+                        <select name="category" id="category" class="form-control text-capitalize @error('category') is-invalid @enderror" value="{{ old('category') }}">
                             <option value="">Scegli la categoria</option>
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
+                        @error('category')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags:</label>
+                        <input name="tags" id="tags" class="form-control" value="{{old('tags')}}">
+                        <span class="small fst-italic">Dividi ogni Tag con una virgola</span>
+                    </div>
+
                     <div class="mt-2">
                         <button type="submit" class="btn btn-info text-white shadow px-4 py-2">Crea</button>
                         <a href="{{route('homepage')}}">Torna alla home</a>

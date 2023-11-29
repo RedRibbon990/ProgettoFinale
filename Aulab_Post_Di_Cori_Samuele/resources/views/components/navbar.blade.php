@@ -22,7 +22,6 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @if(Auth::user()->is_admin)
                         <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard admin</a></li>
-                        <li><a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard revisore</a></li>
                     @elseif(Auth::user()->is_revisor)
                         <li><a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard revisore</a></li>
                     @elseif(Auth::user()->is_writer)
