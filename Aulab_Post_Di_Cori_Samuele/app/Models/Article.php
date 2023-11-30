@@ -17,8 +17,8 @@ class Article extends Model
         'subtitle',
         'body',
         'image',
-        'user_id',
-        'category_id',
+        'user',
+        'category',
         'is_accepted',
     ];
 
@@ -41,6 +41,7 @@ class Article extends Model
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'subtitle' => $this->subtitle,
             'body' => $this->body,
             'category' => $this->category,
             'user' => $this->user,

@@ -70,9 +70,6 @@ class ArticleController extends Controller
     }
     
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Article $article)
     {
         return view('article.show', compact('article'));
@@ -97,9 +94,15 @@ class ArticleController extends Controller
     public function articleSearch(Request $request)
     {
         $query = $request->input('query');
-        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->get();
+        
+        $articles = Article::search($query)
+            ->where('is_accepted', true)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
         return view('article.search-index', compact('articles', 'query'));
     }
+    
     
     /**
      * Remove the specified resource from storage.

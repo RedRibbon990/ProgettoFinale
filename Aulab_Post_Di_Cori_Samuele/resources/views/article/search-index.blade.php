@@ -14,18 +14,15 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$article->title}}</h5>
                             <p class="card-text">{{$article->subtitle}}</p>
-                            @if ($article->category)
-                                <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{$article->category->name}}</a>
-                            @endif
+                            <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{$article->category->name}}</a>
                         </div>
-                        <div class="card-footer text-muted d-flex justify-content-between align-items-center">
                             @if ($article->user)
-                                <a href="{{ route('article.byAuthor', ['user' => $article->user->id]) }}">Redatto il {{ $article->created_at->format('d/m/Y') }} da {{ $article->user->name }}</a>
+                                <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+
+                                    <a href="{{ route('article.byAuthor', ['user' => $article->user->id]) }}">Redatto il {{ $article->created_at->format('d/m/Y') }} da {{ $article->user->name }}</a>
+                                    <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi</a>
+                                </div>
                             @endif
-                            @if ($article->user && $article->category)
-                                <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi</a>
-                            @endif
-                        </div>
                     </div>
                 </div>
             @endforeach

@@ -18,11 +18,11 @@
                             <p class="card-text">{{ $article->body }}</p>
                             @if ($article->category)
                                 <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{ $article->category->name }}</a>
-                                <p class="small fst-italic text-capitalize">
-                                    @foreach($article->tags as $tag)
+                                @foreach($article->tags as $tag)
+                                    <p class="small fst-italic text-capitalize">
                                         #{{$tag->name}}
-                                    @endforeach
-                                </p>
+                                    </p>
+                                @endforeach
                             @else
                                 <p class="small text-muted fst-italic">Nessuna categoria associata</p>
                             @endif

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -139,12 +140,23 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|unique:tags',
         ]);
-
         $tag->update([
             'name' => strtolower($request->name)
         ]);
 
         return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente aggiornato il Tag');
+    }
+
+    public function editCategory(Request $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required|unique:categories',
+        ]);
+        $category->update([
+            'name' => strtolower($request->name),
+        ]);
+
+        return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente aggiornato la Categoria');
     }
 
     public function deleteTag(Tag $tag)
@@ -157,5 +169,12 @@ class AdminController extends Controller
         $tag->delete();
 
         return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente eliminato il Tag');
+    }
+
+    public function deleteCategory(Category $category)
+    {
+        $category->delete();
+
+        return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente eliminato la Categoria');
     }
 }    
