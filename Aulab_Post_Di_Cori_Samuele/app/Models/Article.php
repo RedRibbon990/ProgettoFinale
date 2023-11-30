@@ -17,9 +17,10 @@ class Article extends Model
         'subtitle',
         'body',
         'image',
-        'user',
-        'category',
+        'user_id',
+        'category_id',
         'is_accepted',
+        'slug',
     ];
 
     public function user(){

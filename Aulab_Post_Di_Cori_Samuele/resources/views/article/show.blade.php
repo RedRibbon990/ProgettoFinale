@@ -16,14 +16,14 @@
                     </div>
                     @if ($article->category)
                         <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{ $article->category->name }}</a>
-                        @foreach($article->tags as $tag)
-                            <p class="small fst-italic text-capitalize">
-                                #{{$tag->name}}
-                            </p>
-                        @endforeach
                     @else
                         <p class="small text-muted fst-italic">Nessuna categoria associata</p>
                     @endif
+                    <p class="small fst-italic text-capitalize">
+                        @foreach($article->tags as $tag)
+                            #{{$tag->name}}
+                        @endforeach
+                    </p>
                 </div>
                 <hr>
                 <p>{{ $article->body }}</p>
