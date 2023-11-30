@@ -68,7 +68,26 @@ class ArticleController extends Controller
     
         return redirect(route('homepage'))->with('success', 'Articolo creato con successo, sarà pubblicato dopo la revisione.');
     }
+
+    public function update(Request $request, Article $article)
+    {
+        $request->validate([
+            'title' => 'required|min:5',
+            'subtitle' => 'required|min:5',
+            'body' => 'required|min:10',
+            'category_id' => 'required|exists:categories,id',
+        ]);
     
+        $article->update([
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'body' => $request->body,
+            'category_id' => $request->category,
+            'slug' => Str::slug($request->title),
+        ]);
+    
+        return redirect(route('homepage'))->with('success', 'Articolo aggiornato con successo.');
+    }
     
 
     public function show(Article $article)
