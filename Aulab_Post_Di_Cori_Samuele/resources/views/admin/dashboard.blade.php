@@ -67,7 +67,9 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <x-metainfo-table :metaInfos="$categories" metaType="categorie" />
+            <x-metainfo-table :metaInfos="$categories" metaType="categorie" :columnName="$columnName" />
         </div>
     </div>
+
+    
 </x-layout>

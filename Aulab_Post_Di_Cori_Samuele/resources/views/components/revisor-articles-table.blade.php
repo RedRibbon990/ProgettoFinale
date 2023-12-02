@@ -19,9 +19,12 @@
             <td>
                 @if(is_null($article->is_accepted))
                     <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi l'articolo</a>
-                    @else
+                @elseif($article->is_accepted)
                     <a href="{{ route('revisor.undo', compact('article')) }}" class="btn btn-info text-white">Riporta in revisione</a>
+                @else
+                    <a href="{{ route('article.edit', compact('article')) }}" class="btn btn-info text-white">Modifica l'articolo</a>
                 @endif
+
             </td>
         </tr>
         @endforeach

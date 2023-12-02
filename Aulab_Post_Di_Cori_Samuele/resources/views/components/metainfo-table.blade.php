@@ -2,7 +2,12 @@
     <thead class="table-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nome tag</th>
+            @if(isset($columnName))
+                <th scope="col">{{ $columnName }}</th>
+            @else
+                <th scope="col">Nome Tag</th>
+
+            @endif
             <th scope="col">Numero di articoli collegati</th>
             <th scope="col">Aggiorna</th>
             <th scope="col">Cancella</th>
@@ -14,7 +19,7 @@
             <th scope="row">{{ $metaInfo->id }}</th>
             <td>{{ $metaInfo->name }}</td>
             <td>{{ $metaInfo->articles()->count() }}</td>
-            @if($metaInfo->articles()->count() > 0)
+            @if($metaType == 'tags')
             <td>
                 <form action="{{ route('admin.editTag', ['tag' => $metaInfo]) }}" method="POST">
                     @csrf
@@ -36,7 +41,7 @@
                     <form action="{{ route('admin.editCategory', ['category' => $metaInfo]) }}" method="POST">
                         @csrf
                         @method('put')
-                        <input type="text" name="name" placeholder="Nuovo nome categoria" class="form-control w-50 d-inline" autocomplete="off">
+                        <input type="text" name="name" placeholder="Nuovo nome categoria" class="form-control w-50 d-inline" autocomplete="new-data">
                         <button type="submit" class="btn btn-info text-white">Aggiorna</button>
                     </form>
                 </td>

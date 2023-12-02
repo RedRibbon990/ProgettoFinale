@@ -61,6 +61,7 @@ class ArticleController extends Controller
     
         // Associa i tag all'articolo
         $tags = explode(',', $request->tags);
+        
         foreach ($tags as $tag) {
             $newTag = Tag::updateOrCreate(['name' => $tag]);
             $article->tags()->attach($newTag);
@@ -89,6 +90,10 @@ class ArticleController extends Controller
         return redirect(route('homepage'))->with('success', 'Articolo aggiornato con successo.');
     }
     
+    public function edit(Article $article)
+    {
+        return view('article.edit', compact('article'));
+    }
 
     public function show(Article $article)
     {

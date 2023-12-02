@@ -14,31 +14,31 @@
         </ul>
 
         @auth
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Benvenuto {{ Auth::user()->name }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @if(Auth::user()->is_admin)
-                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard admin</a></li>
-                    @elseif(Auth::user()->is_revisor)
-                        <li><a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard revisore</a></li>
-                    @elseif(Auth::user()->is_writer)
-                        <li><a class="dropdown-item" href="{{ route('writer.dashboard') }}">Dashboard redattore</a></li>
-                    @endif
-                    <li><a class="dropdown-item" href="#">Profilo</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a>
-                        <form method="POST" action="{{ route('logout') }}" id="form-logout" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    @endauth
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Benvenuto {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @if(Auth::user()->is_admin)
+                            <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard admin</a></li>
+                        @elseif(Auth::user()->is_revisor)
+                            <li><a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard revisore</a></li>
+                        @elseif(Auth::user()->is_writer)
+                            <li><a class="dropdown-item" href="{{ route('writer.dashboard') }}">Dashboard redattore</a></li>
+                        @endif
+                        <li><a class="dropdown-item" href="#">Profilo</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a>
+                            <form method="POST" action="{{ route('logout') }}" id="form-logout" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        @endauth
     
     
         @guest

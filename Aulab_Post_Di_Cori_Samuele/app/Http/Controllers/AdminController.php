@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,18 +14,33 @@ class AdminController extends Controller
 {
     public function dashboard(Request $request)
     {
-        // ottenere le richieste
+        // Ottenere le richieste
         $allRequests = [
             'amministratore' => User::where('is_admin', null)->get(),
             'revisore' => User::where('is_revisor', null)->get(),
             'redattore' => User::where('is_writer', null)->get(),
         ];
-
+    
+        $metaInfos = Tag::all();
         $tags = Tag::all();
-        $metaInfos = $tags;
+        $categories = Category::all();
+    
+        // Determina la rotta corrente
+        $currentRoute = $request->route()->getName();
+        // Inizializza $formRoute a null
+        $formRoute = null;
+        // Verifica se la rotta corrente riguarda la modifica di una categoria
+        if (Str::startsWith($currentRoute, 'admin.editCategory')) {
+            $formRoute = 'admin.editCategory';
+        } else {
+            $formRoute = 'admin.editPost';
+        }
 
-        return view('admin.dashboard', compact('allRequests', 'tags', 'metaInfos'));
-    }
+        // Define the column name based on the route
+        $columnName = ($formRoute === 'admin.editCategory') ? 'Nome tags' : 'Nome categoria';
+
+        return view('admin.dashboard', compact('metaInfos', 'tags', 'categories', 'columnName', 'allRequests'));
+    }    
 
     public function setAdmin(User $user)
     {
@@ -134,7 +150,8 @@ class AdminController extends Controller
         $users = User::all();
         return view('admin.showUsers', compact('users', 'currentRole', 'newRole'));
     }
-// Tag
+
+    // Tag
     public function editTag(Request $request, Tag $tag)
     {
         $request->validate([
@@ -156,7 +173,7 @@ class AdminController extends Controller
             'name' => strtolower($request->name),
         ]);
 
-        return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente aggiornato la Categoria');
+        return view('admin.dashboard')->with('message', 'Hai correttamente aggiornato la Categoria');
     }
 
     public function deleteTag(Tag $tag)

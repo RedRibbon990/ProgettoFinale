@@ -15,10 +15,11 @@
                             <h5 class="card-title"><p class="font-italic text-secondary m-0 ">Titolo</p>  {{ $article->title }}</h5>
                             <p class="card-text"><p class="font-italic text-secondary m-0">Sottotitolo</p>{{ $article->subtitle }}</p>
                             <p class="card-text"><p class="font-italic text-secondary m-0">Descrizione</p>{{ $article->body }}</p>
-                            <div class="font-italic m-0"> 
-                                <p class="font-italic text-secondary m-0">Categoria</p>
-                                <a href="{{ route('article.byCategory', ['category' => $article->category]) }}" >{{ $article->category->name }}</a>
-                            </div>
+                            @if ($article->category)
+                                <a href="{{ route('article.byCategory', ['category' => $article->category->id]) }}" class="small text-muted fst-italic text-capitalize">{{ $article->category->name }}</a>
+                            @else
+                                <p class="small text-muted fst-italic">Nessuna categoria associata</p>
+                            @endif
                             <div class="small fst-italic text-capitalize mt-3">
                                 @foreach($article->tags as $tag)
                                     <p class="font-italic text-secondary m-0">Tag</p>
