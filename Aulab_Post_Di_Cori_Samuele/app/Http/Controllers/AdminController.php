@@ -166,14 +166,20 @@ class AdminController extends Controller
 
     public function editCategory(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|unique:categories',
-        ]);
         $category->update([
             'name' => strtolower($request->name),
         ]);
 
         return view('admin.dashboard')->with('message', 'Hai correttamente aggiornato la Categoria');
+    }
+
+    public function storeCategory(Request $request)
+    {
+        Category::create([
+            'name' => strtolower($request->name),
+        ]);
+
+        return redirect(route('admin.dashboard'))->with('message', 'Hai correttamente inserito una nuova categoria');
     }
 
     public function deleteTag(Tag $tag)
