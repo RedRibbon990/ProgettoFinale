@@ -20,15 +20,19 @@ use App\Http\Controllers\WriterController;
 
 // Announcement
 Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
-// All
+    // All
 Route::get('/article/index', [ArticleController::class, 'index'])->name('article.index');
-// Show
+    // Show
 Route::get('/article/show/{article}', [ArticleController::class, 'show'])->name('article.show');
-// By Category
+    // By Category
 Route::get('article/category/{category}', [ArticleController::class, 'byCategory'])->name('article.byCategory');
-// By Author
+    // By Author
 Route::get('article/user/{user}', [ArticleController::class, 'byAuthor'])->name('article.byAuthor');
-
+    // Create
+Route::middleware(['auth'])->group(function (){
+    Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
+});
 // Contact
 Route::get('/careers', [PublicController::class, 'careers'])->name('careers')->middleware('auth');
 Route::get('/careers/submit', [PublicController::class, 'careersSubmit'])->name('careers.submit');
@@ -36,25 +40,24 @@ Route::get('/careers/submit', [PublicController::class, 'careersSubmit'])->name(
 // Admin
 Route::middleware('admin')->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-// Show User
+    // Show User
     Route::get('/admin/users', [AdminController::class, 'showAllUsers'])->name('admin.showUser');
-// Change User Role
+    // Change User Role
     Route::post('/admin/change-user-role/{user}/{newRole}', [AdminController::class, 'changeUserRole'])->name('admin.changeUserRole');
     Route::get('/admin/change-user-role/{user}/{currentRole}/{newRole}', [AdminController::class, 'showChangeUserRoleView'])->name('admin.changeUserRoleView');
-// Set role
+    // Set role
     Route::post('/admin/{user}/set-revisor', [AdminController::class, 'setRevisor'])->name('admin.setRevisor');
     Route::get('/admin/{user}/set-admin', [AdminController::class, 'setAdmin'])->name('admin.setAdmin');
     Route::get('/admin/{user}/set-writer', [AdminController::class, 'setWriter'])->name('admin.setWriter');
-// Reject role
+    // Reject role
     Route::patch('/admin/reject-request/{user}/{role}', [AdminController::class, 'rejectRequest'])->name('admin.rejectRequest');
-// Tag
+    // Tag
     Route::put('/admin/edit/{tag}/tag', [AdminController::class, 'editTag'])->name('admin.editTag');
     Route::delete('/admin/delete/{tag}/tag', [AdminController::class, 'deleteTag'])->name('admin.deleteTag');
-// Category
+    // Category
     Route::put('/admin/edit/{category}/category', [AdminController::class, 'editCategory'])->name('admin.editCategory');
     Route::delete('/admin/delete/{category}/category', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
     Route::post('/admin/category/store', [AdminController::class, 'storeCategory'])->name('admin.storeCategory');
-
 });
 // Revisor
 Route::middleware('revisor')->group(function (){
@@ -66,10 +69,9 @@ Route::middleware('revisor')->group(function (){
 // Writer
 Route::middleware('writer')->group(function (){
     Route::get('/writer/dashboard', [WriterController::class, 'dashboard'])->name('writer.dashboard');
-    Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
-    Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
     Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
     Route::put('article/{article}', [ArticleController::class, 'update'])->name('article.update');
+
 });
 
 // Search

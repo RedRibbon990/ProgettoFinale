@@ -22,7 +22,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->take(4)->get();
+        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->take(6)->get();
         return view('article.index', compact('articles'));
     }
 
@@ -43,7 +43,7 @@ class ArticleController extends Controller
             'title' => 'required|unique:articles|min:5',
             'subtitle' => 'required|unique:articles|min:5',
             'body' => 'required|min:10',
-            'image' => 'image|required',
+            'image' => 'image|required|mimes:jpeg,png,gif,avif|max:2048',
             'category' => 'required|exists:categories,id',
             'tags' => 'required',
         ]);

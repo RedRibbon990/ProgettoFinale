@@ -44,7 +44,7 @@
         @guest
             <ul class="navbar-nav ">
                 <div class="dropdown wlcm">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    <button type="button" class="btn btn-color dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         Benvenuto
                     </button>
                     <li class="nav-item dropdown">

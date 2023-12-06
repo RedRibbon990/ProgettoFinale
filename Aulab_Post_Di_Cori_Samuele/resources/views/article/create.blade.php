@@ -30,6 +30,7 @@
                     <div class="mb-3">
                         <label for="subtitle" class="form-label">Sottotitolo:</label>
                         <input name="subtitle" type="text" class="form-control @error('subtitle') is-invalid @enderror" id="subtitle" value="{{old('subtitle')}}">
+                        <p>Must be unique</p>
                         @error('subtitle')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
@@ -46,21 +47,27 @@
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Immagine:</label>
-                        <input type="file" name="image" id="image" class="form-control" multiple>
+                        <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" multiple>
+                        @error('image')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="category" class="form-label">Categoria</label>
-                        <select name="category" id="category" class="form-control text-capitalize @error('category') is-invalid @enderror" value="{{ old('category') }}">
+                        <select name="category" id="category" class="form-select @error('category') is-invalid @enderror">
                             <option value="">Scegli la categoria</option>
                             @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}" {{ old('category') == $category->id ? 'selected' : '' }}>
+                                    {{$category->name}}
+                                </option>
                             @endforeach
                         </select>
                         @error('category')
-                            <p class="text-danger">{{$message}}</p>
+                            <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
+                    
                     
                     <div class="mb-3">
                         <label for="tags" class="form-label">Tags:</label>

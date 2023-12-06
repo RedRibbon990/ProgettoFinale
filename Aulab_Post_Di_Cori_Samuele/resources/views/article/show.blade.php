@@ -8,7 +8,7 @@
     <div class="container my-5">
         <div class="row justify-content-around">
             <div class="col-12 col-md-8">
-                <img src="{{ Storage::url($article->image) }}" alt="{{ $article->title }}" class="img-fluid my-3">
+                <img src="{{ Storage::url($article->image) }}" alt="{{ $article->title }}" class="img-fluid my-3 mx-auto d-block">
                 <div class="text-center">
                     <h2>{{ $article->subtitle }}</h2>
                     <div class="my-3 text-muted fst-italic">
@@ -19,7 +19,7 @@
                     @else
                         <p class="small text-muted fst-italic">Nessuna categoria associata</p>
                     @endif
-                    <p class="small fst-italic text-capitalize">
+                    <p class="small fst-italic text-capitalize mt-1">
                         @foreach($article->tags as $tag)
                             #{{$tag->name}}
                         @endforeach

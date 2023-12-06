@@ -14,7 +14,9 @@
 
         <div class="right-side">
             <div>
-                <img src="/image/register/aulab.png" alt="" class="img-aulab">
+                <a href="{{route('homepage')}}">
+                    <img src="/image/register/aulab.png" alt="" class="img-aulab">
+                </a>
             </div>
 
             <form action="{{route('register')}}" method="POST" class="register-form">

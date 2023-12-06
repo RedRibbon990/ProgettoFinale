@@ -33,12 +33,12 @@
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <div class="mb-3 form-check text-start">
-                                        <input type="checkbox" name="remember" class="form-check-input" id="exampleCheck1"
-                                            {{ old('remember') ? 'checked' : '' }}
-                                            autocomplete="on">
+                                    <div class="mb-3 form-check text-start d-flex my-auto">
+                                        <input type="checkbox" name="remember" class="form-check-input" id="exampleCheck1" {{ old('remember') ? 'checked' : '' }} autocomplete="on">
                                         <label class="form-check-label" for="exampleCheck1">Ricordati di me</label>
+                                        <a class="ms-auto btn btn-outline-primary" href="{{ route('register') }}">Registrati</a>
                                     </div>
+
                                     <div class="mb-3">
                                         <button type="submit" class="welcome-btn btn-l text-white">Login</button>
                                     </div>

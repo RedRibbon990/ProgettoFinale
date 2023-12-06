@@ -132,7 +132,7 @@ a {
     height: 40px;
 }
 
-.btn:hover {
+.welcome-btn:hover {
     background-position: 100px;
     background-color: black;
     border: black 1px solid;
@@ -168,13 +168,13 @@ h5 {
     color: #ffc107;
 }
 
-.btn-footer {
+.btn-color {
     background-color: #ffc107; 
     color: #000000; 
     transition: background-color 0.3s ease; /* Effetto di transizione al passaggio del mouse */
 }
 
-.btn-footer:hover {
+.btn-color:hover {
     background-color: #f6f6f6; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: black;

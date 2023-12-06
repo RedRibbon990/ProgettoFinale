@@ -5,7 +5,7 @@
                 <h5>Aulab Post</h5>
                 <p>Vuoi lavorare con noi?</p>
                 <p>Registrati e clicca qui!⬇</p>
-                <a href="{{route('careers')}}" class="btn btn-footer">Diventa Revisore</a>
+                <a href="{{route('careers')}}" class="btn btn-color">Diventa Revisore</a>
             </div>
         </div>
     </div>
