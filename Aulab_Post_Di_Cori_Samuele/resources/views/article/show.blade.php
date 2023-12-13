@@ -21,7 +21,7 @@
                     @endif
                     <p class="small fst-italic text-capitalize mt-1">
                         @foreach($article->tags as $tag)
-                            #{{$tag->name}}
+                            <span class="badge bg-secondary small fst-italic text-capitalize m-1">#{{ $tag->name }}</span>
                         @endforeach
                     </p>
                 </div>

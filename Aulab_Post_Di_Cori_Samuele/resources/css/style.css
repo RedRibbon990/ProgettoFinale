@@ -15,7 +15,7 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(to bottom right, #ffffff, #000000);
+    background-color: #000000;
 }
 
 .container-fluid.register {
@@ -171,7 +171,7 @@ h5 {
 .btn-color {
     background-color: #ffc107; 
     color: #000000; 
-    transition: background-color 0.3s ease; /* Effetto di transizione al passaggio del mouse */
+    transition: background-color 0.3s ease;
 }
 
 .btn-color:hover {
@@ -179,3 +179,35 @@ h5 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: black;
 }
+/* Welcome page*/
+.container-fluid .front-page {
+    display: flex;
+    width: 100%;
+    height: 60vh;
+    border-radius: 0;
+    padding: 0;
+    background-color: black;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.front-page {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.sub-text {
+    font-size: 1.2em;
+}
+
+.sub-page {
+    color: #fff;
+}
+
+.sub-page image {
+    width: 100%;
+    height: 100%;
+}
+

@@ -24,11 +24,11 @@
             </td>
             <td>{{$article->created_at->format('d/m/Y')}}</td>
             <td>
-                <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi l'articolo</a>
-                <a href="{{ route('article.edit', compact('article')) }}" class="btn btn-info text-white">Modifica l'articolo</a>
-                <form action="" method="" class="d-inlinw">
+                <a href="{{ route('article.show', compact('article')) }}" class="btn btn-info text-white">Leggi</a>
+                <a href="{{ route('article.edit', compact('article')) }}" class="btn btn-warning text-white">Modifica</a>
+                <form action="" method="POST" class="d-inline">
                     @csrf
-                    <button type="submit" class="btn btn-danger">Elimina Articolo</button>
+                    <button type="submit" class="btn btn-danger">Elimina</button>
                 </form>
             </td>
         </tr>
