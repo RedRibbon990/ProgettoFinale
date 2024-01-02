@@ -67,7 +67,7 @@
                                         <p class="mb-0">Redatto il
                                             {{ $article->created_at->format('d/m/Y') }}</p>
                                         <p class="mb-0">Autore: <a
-                                                href="{{ route('article.byAuthor', $article->user->id) }}">{{ $article->user->name ?? 'Utente anonimo' }}</a>
+                                            href="{{ route('article.byAuthor', $article->user->id) }}">{{ $article->user->name ?? 'Utente anonimo' }}</a>
                                         </p>
                                     </div>
                                     <a href="{{ route('article.show', compact('article')) }}"

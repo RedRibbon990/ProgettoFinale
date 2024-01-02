@@ -128,7 +128,6 @@ class ArticleController extends Controller
         return view('article.search-index', compact('articles', 'query'));
     }
     
-    
     /**
      * Remove the specified resource from storage.
      */

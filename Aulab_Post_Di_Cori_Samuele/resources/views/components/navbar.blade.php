@@ -62,7 +62,6 @@
                 
             </ul>
         @endguest
-
         <form action="{{route('article.search')}}" class="p-2">
             <input type="search" name="query" placeholder="Cosa stai cercando?" aria-label="Search">
             <button type="submit" class="btn btn-outline-info">Cerca</button>
